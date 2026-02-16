@@ -1,65 +1,87 @@
+import Ballpit from "@/components/bubble-bg";
+import CircularText from "@/components/circle-text";
+import TrueFocus from "@/components/focus-text";
+import Header from "@/components/header";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        minHeight: "100vh",
+        width: "100%",
+      }}
+      className="!bg-[#060010]"
+    >
+      <Ballpit
+        count={50}
+        gravity={0.03}
+        friction={0.9975}
+        wallBounce={0.95}
+        colors={["#2d15c2", "#e2e2e2", "#1a1a1a", "#5639d1", "#fff"]}
+        followCursor={false}
+      />
+
+      <div className="fixed inset-0 h-[100vh]  z-30">
+        <Header />
+
+        <div className="me flex flex-col items-center gap-5 md:gap-8">
+          <Image
+            src="/menobg.png"
+            alt="KadirovJS's photo"
+            width={250}
+            height={250}
+            sizes="(max-width: 768px) 150px, 250px"
+            className="rounded-full glass border-js border-2 
+             w-[150px] md:w-[180px] lg:w-[250px] 
+             h-auto"
+          />
+
+          <TrueFocus
+            sentence="Sarvarbek Qodirov"
+            manualMode={false}
+            blurAmount={5}
+            borderColor="#5227FF"
+            animationDuration={1}
+            pauseBetweenAnimations={1}
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+
+        <div className="home-actions py-5 flex items-center justify-center gap-3">
+          <button className="glass cursor-pointer hover:scale-110 duration-200 active:scale-95 px-6 py-2 !bg-white  text-black rounded-3xl">
+            Resume
+          </button>
+          <Link
+            href={"/projects"}
+            className="glass  !bg-[#5147c0] md:!bg-glass cursor-pointer hover:scale-110 duration-200 active:scale-95 px-6 py-2 rounded-3xl"
+          >
+            Projects
+          </Link>
+        </div>
+        <div className="flex items-center justify-center">
+          <Link
+            href={"https://github.com/kdrv-devv"}
             target="_blank"
-            rel="noopener noreferrer"
+            className="glass cursor-pointer mx-auto px-3 py-1 rounded-2xl "
           >
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src={"/github.svg"}
+              width={30}
+              height={30}
+              alt="Github icon"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </Link>
         </div>
-      </main>
+      </div>
+      <CircularText
+        text="FRONTEND * DEVELOPER * "
+        onHover="speedUp"
+        spinDuration={20}
+        className="custom-class  !fixed right-2 md:!right-5 bottom-1 md:!bottom-3"
+      />
     </div>
   );
 }
