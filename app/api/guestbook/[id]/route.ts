@@ -6,10 +6,10 @@ import GuestBook from "@/models/GuestBook";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   await dbConnect();
-    
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   const user = await Users.findOne({ email: session?.user?.email });
 
@@ -18,7 +18,7 @@ export async function PATCH(
   }
 
   const updated = await GuestBook.findByIdAndUpdate(
-    params.id,
+    id,
     { approved: true },
     { new: true }
   );
