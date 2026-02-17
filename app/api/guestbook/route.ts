@@ -8,7 +8,7 @@ import cloudinary from "@/lib/cloudinary";
 export async function POST(req: Request) {
 
   await dbConnect();
-  
+
   const session = await getServerSession(authOptions);
   if (!session) {
     return new Response("Unauthorized", { status: 401 });
@@ -26,10 +26,21 @@ export async function POST(req: Request) {
   });
 
   const entry = await GuestBook.create({
-    user: user._id,
+    user,
     comment,
     signatureUrl: upload.secure_url,
   });
 
   return Response.json(entry);
+}
+
+
+export async function GET(req:Request){
+    await dbConnect()
+
+
+    let feedbacks = await GuestBook.find({ approved: true }).populate("user", "name email image");
+    
+    return Response.json(feedbacks);   
+
 }

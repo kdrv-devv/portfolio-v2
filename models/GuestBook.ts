@@ -7,7 +7,7 @@ const GuestbookSchema = new mongoose.Schema({
   },
   comment: String,
   signatureUrl: String,
-  approved: { type: Boolean, default: false },
+  approved: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
 });
 

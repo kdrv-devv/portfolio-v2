@@ -16,22 +16,22 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-  async signIn({ user }) {
-    await dbConnect();
+    async signIn({ user }) {
+      await dbConnect();
 
-    const existingUser = await Users.findOne({ email: user.email });
+      const existingUser = await Users.findOne({ email: user.email });
 
-    if (!existingUser) {
-      await Users.create({
-        name: user.name,
-        email: user.email,
-        image: user.image,
-      });
-    }
+      if (!existingUser) {
+        await Users.create({
+          name: user.name,
+          email: user.email,
+          image: user.image,
+        });
+      }
 
-    return true;
+      return true;
+    },
   },
-}
 };
 
 const handler = NextAuth(authOptions);

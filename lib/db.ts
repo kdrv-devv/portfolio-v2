@@ -13,12 +13,34 @@ if (!cached) {
 }
 
 export default async function dbConnect() {
-  if (cached.conn) return cached.conn;
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI);
+  if (cached.conn) {
+    console.log("✅ MongoDB already connected");
+    return cached.conn;
   }
 
-  cached.conn = await cached.promise;
-  return cached.conn;
+  if (!cached.promise) {
+    try {
+      console.log("⏳ Connecting to MongoDB...");
+      
+      cached.promise = mongoose.connect(MONGODB_URI, {
+        dbName: "portfolio", // ishonch uchun db nomini ham beramiz
+      });
+
+    } catch (error) {
+      console.error("❌ Initial MongoDB connection error:", error);
+      throw error;
+    }
+  }
+
+  try {
+    cached.conn = await cached.promise;
+    console.log("✅ MongoDB connected successfully");
+    return cached.conn;
+  } catch (error: any) {
+    console.error("❌ MongoDB connection failed:");
+    console.error("Message:", error.message);
+    console.error("Code:", error.code);
+    console.error("Full error:", error);
+    throw error;
+  }
 }
