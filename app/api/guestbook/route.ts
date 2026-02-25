@@ -37,10 +37,6 @@ export async function POST(req: Request) {
 
 export async function GET(req:Request){
     await dbConnect()
-
-
     let feedbacks = await GuestBook.find({ approved: true }).populate("user", "name email image");
-    
     return Response.json(feedbacks);   
-
 }
