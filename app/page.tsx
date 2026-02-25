@@ -51,9 +51,9 @@ export default function Home() {
         </div>
 
         <div className="home-actions py-5 flex items-center justify-center gap-3">
-          <button className="glass cursor-pointer hover:scale-110 duration-200 active:scale-95 px-6 py-2 !bg-white  text-black rounded-3xl">
+          <a href="/Sarvarbek_Qodirov_Resume.pdf" target="_blank" className="glass cursor-pointer hover:scale-110 duration-200 active:scale-95 px-6 py-2 !bg-white  text-black rounded-3xl">
             Resume
-          </button>
+          </a>
           <Link
             href={"/projects"}
             className="glass  !bg-[#5147c0] md:!bg-glass cursor-pointer hover:scale-110 duration-200 active:scale-95 px-6 py-2 rounded-3xl"
