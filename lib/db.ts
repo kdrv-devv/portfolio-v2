@@ -26,6 +26,7 @@ export default async function dbConnect() {
         dbName: "portfolio", // ishonch uchun db nomini ham beramiz
       });
 
+      
     } catch (error) {
       console.error("❌ Initial MongoDB connection error:", error);
       throw error;
