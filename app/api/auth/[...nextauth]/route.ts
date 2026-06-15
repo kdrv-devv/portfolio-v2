@@ -19,6 +19,7 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user }) {
       await dbConnect();
 
+      
       const existingUser = await Users.findOne({ email: user.email });
 
       if (!existingUser) {
